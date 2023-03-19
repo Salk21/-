@@ -1,0 +1,68 @@
+task A_152
+#Написать функцию happy_ticket, которая определяет является ли шестизначное число "счастливым"
+# (сумма первых трех цифр равна сумме последних трех цифр)
+#
+# Пример:
+# happy_ticket(003111) ==> True
+
+import traceback
+
+
+def happy_ticket(number):
+  # Тело функции
+  number1 = str(number)
+
+  while len(number1) != 6:
+    number1 = '0' + number1
+
+  number1 = [int(i) for i in list(str(number1))]
+  return sum(number1[3:]) == sum(number1[:3])
+
+
+# Тесты
+try:
+  assert happy_ticket(3111) == True # 003111
+  assert happy_ticket(101235) == False
+  assert happy_ticket(123456) == False
+  assert happy_ticket(185536) == True
+  assert happy_ticket(713524) == True
+except AssertionError:
+  print("TEST ERROR")
+  traceback.print_exc()
+else:
+  print("TEST PASSED")
+ 
+task A_266
+from IPython.lib.display import IFrame
+# Написать функцию array_diff(a, b), которая возвращает разность списков a и b.
+# Т.е. из списка a должны быть удалены все значения, которые встречаются в списке b.
+#
+# Пример:
+# array_diff([1,2,2,2,3],[2]) == [1,3]
+
+
+import traceback
+
+
+def array_diff(a, b):
+    # Тело функции
+    temp = []
+    for a1 in a:
+      ok = True
+      for b1 in b:
+        if a1 == b1:
+          ok = False
+      if ok:
+        temp.append(a1)
+    return temp
+# Тесты
+try:
+    assert array_diff([1, 2, 3], [2]) == [1, 3]
+    assert array_diff([2, 1, 3, 2, 1, 3, 3], [3, 1]) == [2, 2]
+    assert array_diff([6, 5, 4, 3, 2, 1], []) == [6, 5, 4, 3, 2, 1]
+    assert array_diff([6, 5, 4, 3, 3, 3, 3, 2, 1], [3]) == [6, 5, 4, 2, 1]
+except AssertionError:
+    print("TEST ERROR")
+    traceback.print_exc()
+else:
+    print("TEST PASSED")
